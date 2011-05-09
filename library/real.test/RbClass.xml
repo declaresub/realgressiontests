@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="1805393689">
+ <ObjName>RbClass</ObjName>
+ <ObjContainerID>1491654397</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>AttributeValue</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function AttributeValue(name as String) As Variant</SourceLine>
+   <SourceLine>dim info as Introspection.AttributeInfo = nil</SourceLine>
+   <SourceLine>for each item as Introspection.AttributeInfo in self.TypeInfo.GetAttributes</SourceLine>
+   <SourceLine>if item.Name = name then</SourceLine>
+   <SourceLine>info = item</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>if info &lt;&gt; nil then</SourceLine>
+   <SourceLine>return info.Value</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return nil</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>name as String</ItemParams>
+  <ItemResult>Variant</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ClassInfo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function ClassInfo() As Introspection.TypeInfo</SourceLine>
+   <SourceLine>return GetTypeInfo(RbClass)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>Introspection.TypeInfo</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(t as Introspection.TypeInfo)</SourceLine>
+   <SourceLine>me.TypeInfo = t</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>t as Introspection.TypeInfo</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>DefaultTestMethodPredicate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function DefaultTestMethodPredicate(method_info as Introspection.MethodInfo) As Boolean</SourceLine>
+   <SourceLine>return (IsTestName(method_info.Name) or HasTestAttribute(GetAttributeInfoByName(method_info, TestMethodAttributeName)))</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>method_info as Introspection.MethodInfo</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetAttributeInfoByName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetAttributeInfoByName(method_info as Introspection.MethodInfo, name as String) As Introspection.AttributeInfo</SourceLine>
+   <SourceLine>dim info as Introspection.AttributeInfo = nil</SourceLine>
+   <SourceLine>for each item as Introspection.AttributeInfo in method_info.GetAttributes</SourceLine>
+   <SourceLine>if item.Name = name then</SourceLine>
+   <SourceLine>info = item</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>return info</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>method_info as Introspection.MethodInfo, name as String</ItemParams>
+  <ItemResult>Introspection.AttributeInfo</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>GetMethodInfoByName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function GetMethodInfoByName(class_info as Introspection.TypeInfo, name as String) As Introspection.MethodInfo</SourceLine>
+   <SourceLine>dim info as Introspection.MethodInfo = nil</SourceLine>
+   <SourceLine>for each item as Introspection.MethodInfo in class_info.GetMethods</SourceLine>
+   <SourceLine>if item.Name = name then</SourceLine>
+   <SourceLine>info = item</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>return info</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>class_info as Introspection.TypeInfo, name as String</ItemParams>
+  <ItemResult>Introspection.MethodInfo</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>HasTestAttribute</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function HasTestAttribute(info as Introspection.AttributeInfo) As Boolean</SourceLine>
+   <SourceLine>return info &lt;&gt; nil and info.Name = TestMethodAttributeName and info.Value.BooleanValue</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>info as Introspection.AttributeInfo</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsTestMethod</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function IsTestMethod(method_info as Introspection.MethodInfo) As Boolean</SourceLine>
+   <SourceLine>dim p as MethodInfoPredicateDelegate = TestMethodPredicate</SourceLine>
+   <SourceLine>if p is nil then</SourceLine>
+   <SourceLine>p = AddressOf DefaultTestMethodPredicate</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return method_info.IsShared and p.Invoke(method_info)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>method_info as Introspection.MethodInfo</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>IsTestName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function IsTestName(name as String) As Boolean</SourceLine>
+   <SourceLine>return InStr(name, TestMethodPrefix) = 1</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>name as String</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>List</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine> Shared Function List(classList() as Introspection.TypeInfo) As RbClass()</SourceLine>
+   <SourceLine>dim L() as RbClass</SourceLine>
+   <SourceLine>for each item as Introspection.TypeInfo in classList</SourceLine>
+   <SourceLine>L.Append new RbClass(item)</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>return L</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>classList() as Introspection.TypeInfo</ItemParams>
+  <ItemResult>RbClass()</ItemResult>
+ </Method>
+ <DelegateDeclaration>
+  <ItemName>MethodInfoPredicateDelegate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Delegate Function MethodInfoPredicateDelegate(method_info as Introspection . MethodInfo) As Boolean</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>method_info as Introspection . MethodInfo</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </DelegateDeclaration>
+ <Method>
+  <ItemName>MethodWithAttributeRealTest</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>RealTest = true</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( RealTest = true ) Private Shared Sub MethodWithAttributeRealTest()</SourceLine>
+   <SourceLine>//the purpose of this method is to carry a RealTest attribute so that I can write a unit test for Test_GetAttributeInfoByName.</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TestList</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function TestList() As RealTest()</SourceLine>
+   <SourceLine>dim theList() as RealTest</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each member as Introspection.MethodInfo in me.TypeInfo.GetMethods</SourceLine>
+   <SourceLine>if IsTestMethod(member) then</SourceLine>
+   <SourceLine>theList.Append new RealTest(member)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return theList</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>RealTest()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ClassName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ClassName()</SourceLine>
+   <SourceLine>dim s() as String = Split(CurrentMethodName, ".")</SourceLine>
+   <SourceLine>if UBound(s) &gt; -1 then</SourceLine>
+   <SourceLine>s.Remove UBound(s)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>dim expectedName as String = Join(s, ".")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim c as new RbClass(ClassInfo)</SourceLine>
+   <SourceLine>c.ClassName.ShouldEqual expectedName</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Constructor()</SourceLine>
+   <SourceLine>dim info as Introspection.TypeInfo = ClassInfo</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim c as new RbClass(info)</SourceLine>
+   <SourceLine>c.TypeInfo.ShouldBe info</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_GetAttributeInfoByName</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>"" = true</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( "" = true ) Private Shared Sub Test_GetAttributeInfoByName()</SourceLine>
+   <SourceLine>dim methodName as String = NthField(CurrentMethodName, ".", CountFields(CurrentMethodName, "."))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim method_info as Introspection.MethodInfo = GetMethodInfoByName(ClassInfo, methodName)</SourceLine>
+   <SourceLine>dim attribute_info as Introspection.AttributeInfo = GetAttributeInfoByName(method_info, TestMethodAttributeName)</SourceLine>
+   <SourceLine>attribute_info.Name.ShouldEqual TestMethodAttributeName</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_GetMethodInfoByName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_GetMethodInfoByName()</SourceLine>
+   <SourceLine>const expectedName = "Test_GetMethodInfoByName"</SourceLine>
+   <SourceLine>dim method_info as Introspection.MethodInfo = GetMethodInfoByName(ClassInfo, expectedName)</SourceLine>
+   <SourceLine>method_info.Name.ShouldEqual expectedName</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_List</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_List()</SourceLine>
+   <SourceLine>dim classList() as Introspection.TypeInfo = Array(GetTypeInfo(RbClass))</SourceLine>
+   <SourceLine>dim L() as RbClass = List(classList)</SourceLine>
+   <SourceLine>UBound(L).ShouldEqual 0</SourceLine>
+   <SourceLine>L(0).ClassName.ShouldEqual ClassInfo.FullName</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Property>
+  <ItemName>ClassName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>ClassName As String</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>ClassName As String</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <SetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Set</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Set</SourceLine>
+  </SetAccessor>
+  <GetAccessor>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Get</SourceLine>
+   <SourceLine>return me.TypeInfo.FullName</SourceLine>
+   <SourceLine>End Get</SourceLine>
+  </GetAccessor>
+ </Property>
+ <Property>
+  <ItemName>TestMethodPredicate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared TestMethodPredicate As MethodInfoPredicateDelegate</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>TestMethodPredicate As MethodInfoPredicateDelegate</ItemDeclaration>
+  <ItemFlags>0</ItemFlags>
+  <Shared>1</Shared>
+ </Property>
+ <Property>
+  <ItemName>TypeInfo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>TypeInfo As Introspection.TypeInfo</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>TypeInfo As Introspection.TypeInfo</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>ClassName</ObjName>
+   <PropertyGroup>Behavior</PropertyGroup>
+   <ItemType>String</ItemType>
+   <EditorType>MultiLineEditor</EditorType>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>TestMethodAttributeName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>TestMethodAttributeName</ItemName>
+  <ItemType>0</ItemType>
+  <ItemDef>RealTest</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>TestMethodPrefix</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>TestMethodPrefix</ItemName>
+  <ItemType>0</ItemType>
+  <ItemDef>Test_</ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+ <Constant>
+  <ItemName>TestResultsXSL</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>TestResultsXSL</ItemName>
+  <ItemType>0</ItemType>
+  <ItemDef><Hex bytes="1138">3C3F786D6C2076657273696F6E3D22312E302220656E636F64696E673D225554462D38223F3E0D3C78736C3A7374796C6573686565742076657273696F6E3D22312E302220786D6C6E733A78736C3D22687474703A2F2F7777772E77332E6F72672F313939392F58534C2F5472616E73666F726D223E0D093C78736C3A74656D706C617465206D617463683D222F5265616C54657374526573756C7473223E0D09093C68746D6C3E0D0909093C7469746C653E0D090909095465737420526573756C74733A200D090909093C78736C3A76616C75652D6F662073656C6563743D224050726F6A6563744E616D6522202F3E0D0909093C2F7469746C653E0D0909093C626F64793E0D090909093C683220616C69676E3D2263656E746572223E0D09090909095465737420526573756C74733A200D09090909093C78736C3A76616C75652D6F662073656C6563743D224050726F6A6563744E616D6522202F3E0D090909093C2F68323E0D090909093C78736C3A6170706C792D74656D706C617465732073656C6563743D22436C61737322202F3E0D0909093C2F626F64793E0D09093C2F68746D6C3E0D093C2F78736C3A74656D706C6174653E0D093C78736C3A74656D706C617465206D617463683D22436C617373223E0D09093C68343E0D0909093C78736C3A76616C75652D6F662073656C6563743D22404E616D6522202F3E0D09093C2F68343E0D09093C7461626C653E0D0909093C74723E0D090909093C74683E0D090909090954657374200D090909093C2F74683E0D090909093C74683E0D0909090909526573756C74200D090909093C2F74683E0D0909093C2F74723E0D0909093C78736C3A6170706C792D74656D706C617465732073656C6563743D2254657374526573756C7422202F3E0D09093C2F7461626C653E0D093C2F78736C3A74656D706C6174653E0D093C78736C3A74656D706C617465206D617463683D2254657374526573756C74223E0D09093C78736C3A63686F6F73653E0D0909093C78736C3A7768656E20746573743D22405061737365643D277472756527223E0D090909093C7472206267636F6C6F723D2223303046463030223E0D09090909093C74643E0D0909090909093C78736C3A76616C75652D6F662073656C6563743D22404E616D6522202F3E0D09090909093C2F74643E0D09090909093C74643E0D0909090909095061737365640D09090909093C2F74643E0D090909093C2F74723E0D0909093C2F78736C3A7768656E3E0D0909093C78736C3A6F74686572776973653E0D090909093C7472206267636F6C6F723D2223464630303030223E0D09090909093C74643E0D0909090909093C78736C3A76616C75652D6F662073656C6563743D22404E616D6522202F3E0D09090909093C2F74643E0D09090909093C74643E0D0909090909094661696C65640D09090909093C2F74643E0D090909093C2F74723E0D0909093C2F78736C3A6F74686572776973653E0D09093C2F78736C3A63686F6F73653E0D093C2F78736C3A74656D706C6174653E0D3C2F78736C3A7374796C6573686565743E0D</Hex></ItemDef>
+  <ItemFlags>33</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

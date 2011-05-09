@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="1867017680">
+ <ObjName>TextEncodingTests</ObjName>
+ <ObjContainerID>1216539301</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>0</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes>RegressionTestClass = true</Attributes>
+ <Method>
+  <ItemName>ConvertEncodingOfNilObject</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub ConvertEncodingOfNilObject()</SourceLine>
+   <SourceLine>dim m as MemoryBlock = "foo"</SourceLine>
+   <SourceLine>dim s as String = m</SourceLine>
+   <SourceLine>#pragma nilObjectChecking false</SourceLine>
+   <SourceLine>s.Encoding.ShouldBe nil //here to make sure that the precondition of the feedback report is correct.</SourceLine>
+   <SourceLine>#pragma nilObjectChecking true</SourceLine>
+   <SourceLine>dim t as String = ConvertEncoding(s, Encodings.ASCII)</SourceLine>
+   <SourceLine>#pragma unused t</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_12524</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_12524()</SourceLine>
+   <SourceLine>// &lt;feedback://showreport?report_id=12524&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as ExceptionTestMethod = AddressOf ConvertEncodingOfNilObject</SourceLine>
+   <SourceLine>f.ShouldRaise GetTypeInfo(UnsupportedFormatException)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

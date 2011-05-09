@@ -1,0 +1,510 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="247604046">
+ <ObjName>RealTestModuleUnitTests</ObjName>
+ <ObjContainerID>1491654397</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>FailingBooleanTest</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub FailingBooleanTest()</SourceLine>
+   <SourceLine>dim b as Boolean = true</SourceLine>
+   <SourceLine>b.ShouldEqual false</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FailingIntegerTest</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub FailingIntegerTest()</SourceLine>
+   <SourceLine>dim actualvalue as Integer = 13</SourceLine>
+   <SourceLine>dim expectedvalue as Integer = 17</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FailingVariantTest</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub FailingVariantTest()</SourceLine>
+   <SourceLine>dim a as Variant = "a"</SourceLine>
+   <SourceLine>dim b as Variant = 1</SourceLine>
+   <SourceLine>dim c as Variant = true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim actualValue() as Variant = Array(a, c, b)</SourceLine>
+   <SourceLine>dim expectedvalue() as Variant = Array(a, b, c)</SourceLine>
+   <SourceLine>actualValue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RaiseNilObjectException</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub RaiseNilObjectException()</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>raise new NilObjectException</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RaiseNoException</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub RaiseNoException()</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldRaise_NoException</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub ShouldRaise_NoException()</SourceLine>
+   <SourceLine>//this method is invoked by Test_ShouldRaiseNoException.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf RaiseNoException</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(RuntimeException)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldRaise_WrongExceptionType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub ShouldRaise_WrongExceptionType()</SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf RaiseNilObjectException</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(OutOfBoundsException)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldBeA</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine> Shared Sub Test_ShouldBeA()</SourceLine>
+   <SourceLine>dim t as new RealTestFailure</SourceLine>
+   <SourceLine>t.ShouldBeA GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldBeAtMost_Date</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldBeAtMost_Date()</SourceLine>
+   <SourceLine>dim expectedValue as new Date</SourceLine>
+   <SourceLine>expectedValue.SQLDateTime = "2009-08-07 12:12:12"</SourceLine>
+   <SourceLine>dim actualValue as new Date</SourceLine>
+   <SourceLine>actualValue.SQLDateTime = "2009-08-06 12:12:12"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualValue.ShouldBeAtMost expectedValue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldBe_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldBe_Success()</SourceLine>
+   <SourceLine>dim c1 as new RealTestFailure</SourceLine>
+   <SourceLine>dim c2 as RealTestFailure = c1</SourceLine>
+   <SourceLine>c2.ShouldBe c1</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqualDate_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqualDate_Success()</SourceLine>
+   <SourceLine>dim sqldatetime as String = "2009-08-04 12:24:33"</SourceLine>
+   <SourceLine>dim actualvalue as new Date</SourceLine>
+   <SourceLine>actualvalue.SQLDateTime = sqldatetime</SourceLine>
+   <SourceLine>dim expectedvalue as new Date</SourceLine>
+   <SourceLine>expectedvalue.SQLDateTime = sqldatetime</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqualStringArray_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqualStringArray_Success()</SourceLine>
+   <SourceLine>dim expectedvalue() as String = Array("a", "b", "c")</SourceLine>
+   <SourceLine>expectedvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqualString_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqualString_Success()</SourceLine>
+   <SourceLine>dim actualvalue as String = "foo"</SourceLine>
+   <SourceLine>dim expectedvalue as String = "foo"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqual_Boolean_Failure</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqual_Boolean_Failure()</SourceLine>
+   <SourceLine>dim test as ExceptionTestMethod = AddressOf FailingBooleanTest</SourceLine>
+   <SourceLine>test.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqual_Boolean_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqual_Boolean_Success()</SourceLine>
+   <SourceLine>dim actualvalue as Boolean = true</SourceLine>
+   <SourceLine>dim expectedvalue as Boolean = true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqual_Integer_Failure</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqual_Integer_Failure()</SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf FailingIntegerTest</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqual_Integer_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqual_Integer_Success()</SourceLine>
+   <SourceLine>dim actualvalue as Integer = 13</SourceLine>
+   <SourceLine>dim expectedvalue as Integer = 13</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqual_VariantArray_Failure</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqual_VariantArray_Failure()</SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf FailingVariantTest</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldEqual_VariantArray_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldEqual_VariantArray_Success()</SourceLine>
+   <SourceLine>dim a as Variant = "a"</SourceLine>
+   <SourceLine>dim b as Variant = 1</SourceLine>
+   <SourceLine>dim c as Variant = true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim expectedvalue() as Variant = Array(a, b, c)</SourceLine>
+   <SourceLine>expectedvalue.ShouldEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldNotEqualString_Success</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldNotEqualString_Success()</SourceLine>
+   <SourceLine>dim actualvalue as String = "foo"</SourceLine>
+   <SourceLine>dim expectedvalue as String = "bar"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>actualvalue.ShouldNotEqual expectedvalue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldRaiseNilObjectException</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldRaiseNilObjectException()</SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf RaiseNilObjectException</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(NilObjectException)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldRaiseNoException</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldRaiseNoException()</SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf ShouldRaise_NoException</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ShouldRaise_WrongExceptionType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ShouldRaise_WrongExceptionType()</SourceLine>
+   <SourceLine>dim t as ExceptionTestMethod = AddressOf ShouldRaise_WrongExceptionType</SourceLine>
+   <SourceLine>t.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Untitled</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Untitled()</SourceLine>
+   <SourceLine>dim b as Boolean</SourceLine>
+   <SourceLine>b.ShouldEqual true, "Precondition failure"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

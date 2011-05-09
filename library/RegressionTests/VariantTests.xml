@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="863407451">
+ <ObjName>VariantTests</ObjName>
+ <ObjContainerID>1216539301</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>0</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes>RegressionTestClass = true</Attributes>
+ <Method>
+  <ItemName>Test_Feedback_12005</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>"" = true</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( "" = true )  Shared Sub Test_Feedback_12005()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=12005&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim X as Integer = 43</SourceLine>
+   <SourceLine>dim foo() as Variant</SourceLine>
+   <SourceLine>foo.Append X</SourceLine>
+   <SourceLine>dim indexOf as Integer =  foo.IndexOf(X)</SourceLine>
+   <SourceLine>indexOf.ShouldEqual 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_15047</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_15047()</SourceLine>
+   <SourceLine>// &lt;feedback://showreport?report_id=15407&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim v as Variant = 1</SourceLine>
+   <SourceLine>dim w as Variant = true</SourceLine>
+   <SourceLine>v.Equals(w).ShouldEqual false</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

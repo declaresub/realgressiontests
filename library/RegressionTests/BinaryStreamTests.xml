@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="99738300">
+ <ObjName>BinaryStreamTests</ObjName>
+ <ObjContainerID>1216539301</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>0</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes>RegressionTestClass = true</Attributes>
+ <Method>
+  <ItemName>Feedback_7602_ExceptionTestMethod</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Feedback_7602_ExceptionTestMethod()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=7602&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as ExceptionTestMethod = AddressOf Feedback_7602_ExceptionTestMethod</SourceLine>
+   <SourceLine>f.ShouldRaise GetTypeInfo(NilObjectException)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_7531</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>FeedbackRegressionTest = true</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( FeedbackRegressionTest = true )  Shared Sub Test_Feedback_7531()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=7531&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim bs as new BinaryStream("foo") //bs should be read-only</SourceLine>
+   <SourceLine>bs.Write "bar"</SourceLine>
+   <SourceLine>bs.WriteError.ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_7602</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>FeedbackRegressionTest = true</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( FeedbackRegressionTest = true ) Private Shared Sub Test_Feedback_7602()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=7602&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//app shouldn't crash...</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

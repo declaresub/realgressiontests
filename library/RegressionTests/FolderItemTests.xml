@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="654974953">
+ <ObjName>FolderItemTests</ObjName>
+ <ObjContainerID>1216539301</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>0</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes>RegressionTestClass = true</Attributes>
+ <Method>
+  <ItemName>Feedback_12_ExceptionTestMethod</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Feedback_12_ExceptionTestMethod()</SourceLine>
+   <SourceLine>dim f as FolderItem = SpecialFolder.UserHome.Child("foo:bar")</SourceLine>
+   <SourceLine>#pragma unused f</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_11289</ItemName>
+  <Compatibility></Compatibility>
+  <Attributes>FeedbackURL = "feedback://showreport?report_id=11289"</Attributes>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Attributes( FeedbackURL = "feedback://showreport?report_id=11289" ) Private Shared Sub Test_Feedback_11289()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=11289&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as FolderItem = SpecialFolder.Documents</SourceLine>
+   <SourceLine>dim g as FolderItem = new FolderItem(ConvertEncoding(f.ShellPath, Encodings.UTF16), FolderItem.PathTypeShell)</SourceLine>
+   <SourceLine>//the problem is that the line above generates an UnsupportedFormatException in Windows.  This exception is</SourceLine>
+   <SourceLine>//converted to a UnitTest failure.</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_12</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_12()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=12&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as ExceptionTestMethod = AddressOf Feedback_12_ExceptionTestMethod</SourceLine>
+   <SourceLine>f.ShouldRaise GetTypeInfo(UnsupportedFormatException)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_15350</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_15350()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=15350&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as FolderItem = GetTemporaryFolderItem</SourceLine>
+   <SourceLine>f.Exists.ShouldEqual false</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_6761</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_6761()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=6761&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#if targetMacOS or targetLinux</SourceLine>
+   <SourceLine>dim var as FolderItem = GetTrueFolderItem("/var", FolderItem.PathTypeShell)</SourceLine>
+   <SourceLine>var.ShouldNotBe nil</SourceLine>
+   <SourceLine>var.ShellPath.ShouldEqual "/var"</SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

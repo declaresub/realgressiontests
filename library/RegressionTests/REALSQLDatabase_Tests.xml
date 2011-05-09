@@ -1,0 +1,745 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="2017265462">
+ <ObjName>REALSQLDatabase_Tests</ObjName>
+ <ObjContainerID>1216539301</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>0</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes>RegressionTestClass = true</Attributes>
+ <Method>
+  <ItemName>Feedback_14030_DateValue_ExceptionTestMethod</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Feedback_14030_DateValue_ExceptionTestMethod()</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE DateTest (d Date)"</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO DateTest (d) VALUES ('')"</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT d FROM DateTest")</SourceLine>
+   <SourceLine>dim d as Date = rs.Field("d").DateValue</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TestColumnType</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub TestColumnType(columnTypeName as String, columnType as Integer)</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim s as String = "CREATE TABLE TypeTest (C " + columnTypeName + ");"</SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE TypeTest (C " + columnTypeName + ");"</SourceLine>
+   <SourceLine>if db.Error then</SourceLine>
+   <SourceLine>break</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim fs as RecordSet = db.FieldSchema("TypeTest")</SourceLine>
+   <SourceLine>if db.Error then</SourceLine>
+   <SourceLine>break</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>fs.Field("FieldType").IntegerValue.ShouldEqual columnType</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>columnTypeName as String, columnType as Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Binary</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Binary()</SourceLine>
+   <SourceLine>TestColumnType "Binary", 14</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Blob</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Blob()</SourceLine>
+   <SourceLine>TestColumnType "Blob", 15</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Boolean</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Boolean()</SourceLine>
+   <SourceLine>TestColumnType "Boolean", 12</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Byte</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Byte()</SourceLine>
+   <SourceLine>TestColumnType "Byte", 1</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Char</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Char()</SourceLine>
+   <SourceLine>TestColumnType "Char", 4</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Currency</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Currency()</SourceLine>
+   <SourceLine>TestColumnType "Currency", 11</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Date</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Date()</SourceLine>
+   <SourceLine>TestColumnType "Date", 8</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Decimal</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Decimal()</SourceLine>
+   <SourceLine>TestColumnType "DECIMAL(16,8)", 13</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Double</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Double()</SourceLine>
+   <SourceLine>TestColumnType "Double", 7</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Float</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Float()</SourceLine>
+   <SourceLine>TestColumnType "Float", 6</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Int64</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Int64()</SourceLine>
+   <SourceLine>TestColumnType "Int64", 19</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Integer</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Integer()</SourceLine>
+   <SourceLine>TestColumnType "Integer", 3</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_SmallInt</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_SmallInt()</SourceLine>
+   <SourceLine>TestColumnType "SmallInt", 2</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_String</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_String()</SourceLine>
+   <SourceLine>TestColumnType "String", 18</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Text</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Text()</SourceLine>
+   <SourceLine>TestColumnType "Text", 5</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_Time</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_Time()</SourceLine>
+   <SourceLine>TestColumnType "Time", 9</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_TimeStamp</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_TimeStamp()</SourceLine>
+   <SourceLine>TestColumnType "TimeStamp", 10</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_VarBinary</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_VarBinary()</SourceLine>
+   <SourceLine>TestColumnType "VarBinary", 16</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ColumnType_VarChar</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ColumnType_VarChar()</SourceLine>
+   <SourceLine>TestColumnType "VarChar", 5</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_12179</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_12179()</SourceLine>
+   <SourceLine>// &lt;feedback://showreport?report_id=12179&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE Table1 (column1 Integer CONSTRAINT PK_mpuser_sn PRIMARY KEY AUTOINCREMENT, column2 Integer)"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO Table1 (column2) VALUES (1)"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT column1, typeof(column1) FROM Table1")</SourceLine>
+   <SourceLine>dim v_type as Integer = rs.idxField(1).Value.Type</SourceLine>
+   <SourceLine>v_type.ShouldEqual Variant.TypeLong</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_12180</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_12180()</SourceLine>
+   <SourceLine>// &lt;feedback://showreport?report_id=12179&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE Table1 (column1 Integer CONSTRAINT PK_mpuser_sn PRIMARY KEY AUTOINCREMENT, column2 text)"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO Table1 (column2) VALUES ('')"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT column2, typeof(column2) FROM Table1")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim v as Variant = rs.idxField(1).Value</SourceLine>
+   <SourceLine>v.Type.ShouldEqual Variant.TypeString</SourceLine>
+   <SourceLine>//v = nil in 2010r2.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim typeof as String = rs.idxField(2).Value  //returns 'text', as expected.</SourceLine>
+   <SourceLine>rs = nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim rs2 as RecordSet = db.SQLSelect("SELECT column2, typeof(column2) FROM Table1 WHERE column2 IS NULL")</SourceLine>
+   <SourceLine>//rs2.EOF is true, indicating that no records satisfying the query were found.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_13267</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_13267()</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE T (C Integer)"</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO T (C) VALUES ('1')"</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT C FROM T")</SourceLine>
+   <SourceLine>dim expectedValue as Variant = "1"</SourceLine>
+   <SourceLine>rs.Field("C").Value.ShouldEqual expectedValue</SourceLine>
+   <SourceLine>rs.Field("C").StringValue.ShouldEqual "1"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_13782</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_13782()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=13782&gt; -- not one of ours.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE Table1 (column1)"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO Table1 (column1) VALUES (NULL)"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT column1 FROM Table1")</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim d as Date = rs.idxField(1).DateValue</SourceLine>
+   <SourceLine>#pragma nilObjectChecking false</SourceLine>
+   <SourceLine>d.ShouldBe nil</SourceLine>
+   <SourceLine>#pragma nilObjectChecking true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_14226_DateValue</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_14226_DateValue()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=14226&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as ExceptionTestMethod = AddressOf Feedback_14030_DateValue_ExceptionTestMethod</SourceLine>
+   <SourceLine>f.ShouldRaise GetTypeInfo(UnsupportedFormatException)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_14226_Value</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_14226_Value()</SourceLine>
+   <SourceLine>// &lt;feedback://showreport?report_id=14226&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE DateTest (d Date)"</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO DateTest (d) VALUES ('')"</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT d FROM DateTest")</SourceLine>
+   <SourceLine>dim expectedValue as Variant = ""</SourceLine>
+   <SourceLine>rs.Field("d").Value.ShouldEqual expectedValue</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_14804</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_14804()</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE Currency (ExchangeRate DECIMAL(16,8));"</SourceLine>
+   <SourceLine>dim fs as RecordSet = db.FieldSchema("Currency")</SourceLine>
+   <SourceLine>fs.Field("FieldType").IntegerValue.ShouldEqual 13</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_16526</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_16526()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=16526&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if db.Connect then</SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE T (""test column"" Integer)"</SourceLine>
+   <SourceLine>dim record as new DatabaseRecord</SourceLine>
+   <SourceLine>record.IntegerColumn("test column") = 43</SourceLine>
+   <SourceLine>db.InsertRecord "T", record</SourceLine>
+   <SourceLine>db.Error.ShouldEqual false</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>//?</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_7576</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_7576()</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute("CREATE TABLE Table1 (foo Integer)")</SourceLine>
+   <SourceLine>db.Close</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT * FROM Table1")</SourceLine>
+   <SourceLine>db.Error.ShouldEqual true</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_InsertBlob</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_InsertBlob()</SourceLine>
+   <SourceLine>//bug predates Rb Feedback system.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim tableSQL as String = "CREATE TABLE Table1 ( table_sn Integer CONSTRAINT PK_table_sn PRIMARY KEY AUTOINCREMENT NOT NULL, photo Blob)"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute tableSQL</SourceLine>
+   <SourceLine>if db.Error then</SourceLine>
+   <SourceLine>break</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim blobTestData as String = "foo" + Chr(0) + "bar"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim insert as new DatabaseRecord</SourceLine>
+   <SourceLine>insert.Column("photo") = blobTestData</SourceLine>
+   <SourceLine>db.InsertRecord "Table1", insert</SourceLine>
+   <SourceLine>if db.Error then</SourceLine>
+   <SourceLine>break</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine>if db.Error then</SourceLine>
+   <SourceLine>break</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim query as String = "SELECT photo FROM Table1"</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect(query)</SourceLine>
+   <SourceLine>dim columnData as String = rs.Field("photo").StringValue</SourceLine>
+   <SourceLine>columnData.ShouldBytewiseEqual blobTestData</SourceLine>
+   <SourceLine>//the problem is that InsertRecord is chopping the blob data at the first Chr(0).</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

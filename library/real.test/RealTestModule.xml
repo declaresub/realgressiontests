@@ -1,0 +1,725 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="491302565">
+ <ObjName>RealTestModule</ObjName>
+ <ObjContainerID>1491654397</ObjContainerID>
+ <IsClass>0</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Assert</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Assert(assertion as Boolean, msg as String = "")</SourceLine>
+   <SourceLine>//there are assertions that don't lend themselves to expression using our little language. The example that led to the addition of Assert is</SourceLine>
+   <SourceLine>// comparison of two delegates whose type is private.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if not assertion then</SourceLine>
+   <SourceLine>dim err as new RealTestFailure</SourceLine>
+   <SourceLine>err.Message = msg</SourceLine>
+   <SourceLine>raise err</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>assertion as Boolean, msg as String = ""</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>BuildPlatform</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function BuildPlatform() As String</SourceLine>
+   <SourceLine>#if targetCocoa</SourceLine>
+   <SourceLine>return "Mac OS Cocoa"</SourceLine>
+   <SourceLine>#elseIf targetCarbon</SourceLine>
+   <SourceLine>return "Mac OS Carbon"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <DelegateDeclaration>
+  <ItemName>ExceptionTestMethod</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Delegate Sub ExceptionTestMethod()</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </DelegateDeclaration>
+ <Method>
+  <ItemName>ExecuteTests</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ExecuteTests(classList() as Introspection.TypeInfo, filterClasses as RbClassPredicate = nil) As RealTestResults</SourceLine>
+   <SourceLine>dim L() as RbClass</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if filterClasses &lt;&gt; nil then</SourceLine>
+   <SourceLine>for each item as RbClass in RbClass.List(classList)</SourceLine>
+   <SourceLine>if filterClasses.Invoke(item) then</SourceLine>
+   <SourceLine>L.Append item</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>L = RbClass.List(classList)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return ExecuteTests(L)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>1</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>classList() as Introspection.TypeInfo, filterClasses as RbClassPredicate = nil</ItemParams>
+  <ItemResult>RealTestResults</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ExecuteTests</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ExecuteTests(classList() as RbClass) As RealTestResults</SourceLine>
+   <SourceLine>dim xml as new RealTestResults</SourceLine>
+   <SourceLine>dim root as XMLElement = xml.CreateElement("RealTestResults")</SourceLine>
+   <SourceLine>root.SetAttribute "ProjectName", App.ExecutableFile.Name</SourceLine>
+   <SourceLine>dim now as new Date</SourceLine>
+   <SourceLine>root.SetAttribute "Date", now.SQLDateTime</SourceLine>
+   <SourceLine>root.SetAttribute "BuildPlatform", BuildPlatform</SourceLine>
+   <SourceLine>xml.AppendChild(root)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each item as RbClass in classList</SourceLine>
+   <SourceLine>dim classNode as XMLElement = xml.CreateElement("Class")</SourceLine>
+   <SourceLine>classNode.SetAttribute "Name", item.ClassName</SourceLine>
+   <SourceLine>root.AppendChild classNode</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for each test as RealTest in SortTestsByName(item.TestList)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim testNode as XMLElement = xml.CreateElement("TestResult")</SourceLine>
+   <SourceLine>testNode.SetAttribute "Name", test.TestName</SourceLine>
+   <SourceLine>classNode.AppendChild testNode</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim executionStart as Double = Microseconds</SourceLine>
+   <SourceLine>try</SourceLine>
+   <SourceLine>test.Execute</SourceLine>
+   <SourceLine>testNode.SetAttribute "Passed", "true"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>catch failure as RealTestFailure</SourceLine>
+   <SourceLine>testNode.SetAttribute "Passed", "false"</SourceLine>
+   <SourceLine>dim expectedValueNode as XMLElement = xml.CreateElement("ExpectedValue")</SourceLine>
+   <SourceLine>testNode.AppendChild expectedValueNode</SourceLine>
+   <SourceLine>expectedValueNode.AppendChild xml.CreateCDATASection(failure.ExpectedValue)</SourceLine>
+   <SourceLine>dim actualValueNode as XMLElement = xml.CreateElement("ActualValue")</SourceLine>
+   <SourceLine>testNode.AppendChild actualValueNode</SourceLine>
+   <SourceLine>actualValueNode.AppendChild xml.CreateCDATASection(failure.ActualValue)</SourceLine>
+   <SourceLine>dim stackNode as XMLElement = xml.CreateElement("StackTrace")</SourceLine>
+   <SourceLine>testNode.AppendChild stackNode</SourceLine>
+   <SourceLine>stackNode.AppendChild xml.CreateCDATASection(Join(failure.Stack, EndOfLine))</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>finally</SourceLine>
+   <SourceLine>dim executionComplete as Double = Microseconds</SourceLine>
+   <SourceLine>testNode.SetAttribute "ExecutionTime", Format(executionComplete - executionStart, "#")</SourceLine>
+   <SourceLine>end try</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>return xml</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>classList() as RbClass</ItemParams>
+  <ItemResult>RealTestResults</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>FilterClassesWithNoTests</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function FilterClassesWithNoTests(L() as RbClass) As RbClass()</SourceLine>
+   <SourceLine>dim F() as RbClass</SourceLine>
+   <SourceLine>for each item as RbClass in L</SourceLine>
+   <SourceLine>if UBound(item.TestList) &gt; -1 then</SourceLine>
+   <SourceLine>F.Append item</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>return F</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>L() as RbClass</ItemParams>
+  <ItemResult>RbClass()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>hasTests</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function hasTests(c as RbClass) As Boolean</SourceLine>
+   <SourceLine>return c &lt;&gt; nil and UBound(c.TestList) &gt; -1</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>c as RbClass</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ObjectInfo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function ObjectInfo(obj as Object) As String</SourceLine>
+   <SourceLine>if obj &lt;&gt; nil then</SourceLine>
+   <SourceLine>dim v as Variant = obj</SourceLine>
+   <SourceLine>return Introspection.GetType(obj).FullName + ": hash = " + Format(v.Hash, "0")</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>return "Nil"</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>obj as Object</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RaiseRealTestFailure</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub RaiseRealTestFailure(actualValue as Variant, expectedvalue as Variant, msg as String = "")</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim err as new RealTestFailure</SourceLine>
+   <SourceLine>err.Message = msg</SourceLine>
+   <SourceLine>err.ActualValue = actualValue</SourceLine>
+   <SourceLine>err.ExpectedValue = expectedvalue</SourceLine>
+   <SourceLine>raise err</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>actualValue as Variant, expectedvalue as Variant, msg as String = ""</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <DelegateDeclaration>
+  <ItemName>RbClassPredicate</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Delegate Function RbClassPredicate(c as RbClass) As Boolean</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>c as RbClass</ItemParams>
+  <ItemResult>Boolean</ItemResult>
+ </DelegateDeclaration>
+ <Method>
+  <ItemName>ShouldBe</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldBe(extends actualvalue as Object, expectedvalue as Object)</SourceLine>
+   <SourceLine>if not (actualvalue is expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure ObjectInfo(actualValue), ObjectInfo(expectedvalue)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Object, expectedvalue as Object</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldBeA</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldBeA(extends obj as Object, expectedType as Introspection.TypeInfo)</SourceLine>
+   <SourceLine>dim actualType as Introspection.TypeInfo = Introspection.GetType(obj)</SourceLine>
+   <SourceLine>if actualType &lt;&gt; expectedType then</SourceLine>
+   <SourceLine>RaiseRealTestFailure(actualType.FullName, expectedType.FullName)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends obj as Object, expectedType as Introspection.TypeInfo</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldBeAtMost</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldBeAtMost(extends actualValue as Date, expectedValue as Date)</SourceLine>
+   <SourceLine>if not (actualvalue &lt;= expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure(actualValue, expectedValue)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualValue as Date, expectedValue as Date</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldBytewiseEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldBytewiseEqual(extends actualvalue as String, expectedvalue as String)</SourceLine>
+   <SourceLine>if StrComp(actualvalue, expectedvalue, 0) &lt;&gt; 0 then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as String, expectedvalue as String</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Boolean, expectedvalue as Boolean)</SourceLine>
+   <SourceLine>if (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Boolean, expectedvalue as Boolean</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Boolean, expectedvalue as Boolean, msg as String)</SourceLine>
+   <SourceLine>if (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue, msg</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Boolean, expectedvalue as Boolean, msg as String</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Date, expectedvalue as Date)</SourceLine>
+   <SourceLine>if (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Date, expectedvalue as Date</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Double, expectedvalue as Double)</SourceLine>
+   <SourceLine>if (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Double, expectedvalue as Double</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Integer, expectedvalue as Integer)</SourceLine>
+   <SourceLine>if (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Integer, expectedvalue as Integer</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue() as Pair, expectedvalue() as Pair)</SourceLine>
+   <SourceLine>if UBound(actualvalue) &lt;&gt; UBound(expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as Integer = 0 to UBound(actualvalue)</SourceLine>
+   <SourceLine>actualvalue(i).ShouldEqual expectedvalue(i)</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue() as Pair, expectedvalue() as Pair</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Pair, expectedvalue as Pair)</SourceLine>
+   <SourceLine>if (actualvalue.Left &lt;&gt; expectedvalue.Left) or (actualvalue.Right &lt;&gt; expectedvalue.Right) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Pair, expectedvalue as Pair</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue() as String, expectedvalue() as String)</SourceLine>
+   <SourceLine>if UBound(actualvalue) &lt;&gt; UBound(expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as Integer = 0 to UBound(actualvalue)</SourceLine>
+   <SourceLine>actualvalue(i).ShouldEqual expectedvalue(i)</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue() as String, expectedvalue() as String</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as String, expectedvalue as String)</SourceLine>
+   <SourceLine>if (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as String, expectedvalue as String</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue() as Variant, expectedvalue() as Variant)</SourceLine>
+   <SourceLine>if UBound(actualvalue) &lt;&gt; UBound(expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as Integer = 0 to UBound(actualvalue)</SourceLine>
+   <SourceLine>actualvalue(i).ShouldEqual expectedvalue(i)</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue() as Variant, expectedvalue() as Variant</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldEqual(extends actualvalue as Variant, expectedvalue as Variant)</SourceLine>
+   <SourceLine>if (actualValue.Type &lt;&gt; expectedValue.Type) or (actualvalue &lt;&gt; expectedvalue) then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Variant, expectedvalue as Variant</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldNotBe</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldNotBe(extends actualvalue as Object, expectedvalue as Object)</SourceLine>
+   <SourceLine>if actualvalue is expectedvalue then</SourceLine>
+   <SourceLine>RaiseRealTestFailure ObjectInfo(actualValue), ObjectInfo(expectedvalue)</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Object, expectedvalue as Object</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldNotEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldNotEqual(extends actualvalue as String, expectedvalue as String)</SourceLine>
+   <SourceLine>if actualvalue = expectedvalue then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as String, expectedvalue as String</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldRaise</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldRaise(extends t as ExceptionTestMethod, exceptionType as Introspection.TypeInfo)</SourceLine>
+   <SourceLine>dim actualExceptionRaised as RuntimeException = nil</SourceLine>
+   <SourceLine>try</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine>t.Invoke</SourceLine>
+   <SourceLine>catch e as RuntimeException</SourceLine>
+   <SourceLine>actualExceptionRaised = e</SourceLine>
+   <SourceLine>end try</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if Introspection.GetType(actualExceptionRaised) &lt;&gt; exceptionType then</SourceLine>
+   <SourceLine>if actualExceptionRaised &lt;&gt; nil then</SourceLine>
+   <SourceLine>RaiseRealTestFailure Introspection.GetType(actualExceptionRaised).Name, exceptionType.Name</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>RaiseRealTestFailure "", exceptionType.Name</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends t as ExceptionTestMethod, exceptionType as Introspection.TypeInfo</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SkipClassesWithNoTests</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SkipClassesWithNoTests() As RbClassPredicate</SourceLine>
+   <SourceLine>return AddressOf hasTests</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>RbClassPredicate</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>SortTestsByName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function SortTestsByName(testList() as RealTest) As RealTest()</SourceLine>
+   <SourceLine>dim L() as RealTest</SourceLine>
+   <SourceLine>dim names() as String</SourceLine>
+   <SourceLine>for i as Integer = 0 to UBound(testList)</SourceLine>
+   <SourceLine>L.Append testList(i)</SourceLine>
+   <SourceLine>names.Append testList(i).TestName</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>names.SortWith L</SourceLine>
+   <SourceLine>return L</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>testList() as RealTest</ItemParams>
+  <ItemResult>RealTest()</ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+ <Constant>
+  <ItemName>RunTests</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemName>RunTests</ItemName>
+  <ItemType>3</ItemType>
+  <ItemDef>true</ItemDef>
+  <ItemFlags>0</ItemFlags>
+ </Constant>
+</block>
+</RBProject>

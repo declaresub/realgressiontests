@@ -1,0 +1,272 @@
+<?xml version="1.0"?>
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<block type="Module" ID="1455299366">
+ <ObjName>RealTest</ObjName>
+ <ObjContainerID>1491654397</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Method>
+  <ItemName>Constructor</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Constructor(test as Introspection.MethodInfo)</SourceLine>
+   <SourceLine>#pragma nilObjectChecking false</SourceLine>
+   <SourceLine>test.ShouldNotBe nil</SourceLine>
+   <SourceLine>#pragma nilObjectChecking true</SourceLine>
+   <SourceLine>test.IsShared.ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>me.MethodInfo = test</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>test as Introspection.MethodInfo</ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Execute</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub Execute()</SourceLine>
+   <SourceLine>self.MethodInfo.Invoke nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>exception e as RuntimeException</SourceLine>
+   <SourceLine>if e isA EndException or e isA ThreadEndException then</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine>raise e</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>if  (e isA RealTestFailure) then</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine>raise e</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>//convert to a RealTestFailure</SourceLine>
+   <SourceLine>dim failure as new RealTestFailure</SourceLine>
+   <SourceLine>failure.actualValue = Introspection.GetType(e).FullName</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine>raise failure</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>exception testfailure as RealTestFailure</SourceLine>
+   <SourceLine>testfailure.TestName = me.TestName</SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine>raise testfailure</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>MethodName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Function MethodName(s as String, fieldcount as Integer = 1) As String</SourceLine>
+   <SourceLine>const separator = "."</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim names() as String = Split(s, separator)</SourceLine>
+   <SourceLine>dim thename() as String</SourceLine>
+   <SourceLine>for i as Integer = UBound(names) - fieldcount to UBound(names)</SourceLine>
+   <SourceLine>thename.Append names(i)</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine>return Join(thename, separator)</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams>s as String, fieldcount as Integer = 1</ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RaiseNilObjectException</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub RaiseNilObjectException()</SourceLine>
+   <SourceLine>//converts raise into a method</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>raise new NilObjectException</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>RaiseRealTestFailureWithoutParameters</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub RaiseRealTestFailureWithoutParameters()</SourceLine>
+   <SourceLine>//wraps the raise statement into a method</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//this method should have a unique name for easy lookup.</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#pragma breakOnExceptions off</SourceLine>
+   <SourceLine>raise new RealTestFailure</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>TestName</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Function TestName() As String</SourceLine>
+   <SourceLine>return me.MethodInfo.Name</SourceLine>
+   <SourceLine>End Function</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult>String</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_ExceptionConversion</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_ExceptionConversion()</SourceLine>
+   <SourceLine>dim t as Introspection.TypeInfo = GetTypeInfo(RealTest)</SourceLine>
+   <SourceLine>dim s as RealTest</SourceLine>
+   <SourceLine>for each m as Introspection.MethodInfo in t.GetMethods</SourceLine>
+   <SourceLine>if m.Name = "RaiseNilObjectException" then</SourceLine>
+   <SourceLine>s = new RealTest(m)</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim x as ExceptionTestMethod = AddressOf s.Execute</SourceLine>
+   <SourceLine>x.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//only if the test above passes will this test be executed, so we should only need to catch</SourceLine>
+   <SourceLine>//RealTestFailures.</SourceLine>
+   <SourceLine>try</SourceLine>
+   <SourceLine>s.Execute</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>catch failure as RealTestFailure</SourceLine>
+   <SourceLine>failure.ActualValue.StringValue.ShouldEqual "NilObjectException"</SourceLine>
+   <SourceLine>end try</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Execute_RaisesRealTestFailure</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Execute_RaisesRealTestFailure()</SourceLine>
+   <SourceLine>dim thisclassinfo as Introspection.TypeInfo = GetTypeInfo(RealTest)</SourceLine>
+   <SourceLine>dim test_method_info as Introspection.MethodInfo</SourceLine>
+   <SourceLine>for each item as Introspection.MethodInfo in thisclassinfo.GetMethods</SourceLine>
+   <SourceLine>if item.Name = "RaiseRealTestFailureWithoutParameters" then</SourceLine>
+   <SourceLine>test_method_info = item</SourceLine>
+   <SourceLine>exit</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim test as new RealTest(test_method_info)</SourceLine>
+   <SourceLine>dim x as ExceptionTestMethod = AddressOf test.Execute</SourceLine>
+   <SourceLine>x.ShouldRaise GetTypeInfo(RealTestFailure)</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Property>
+  <ItemName>MethodInfo</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>MethodInfo As Introspection.MethodInfo</SourceLine>
+   <SourceLine></SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <ItemDeclaration>MethodInfo As Introspection.MethodInfo</ItemDeclaration>
+  <ItemFlags>33</ItemFlags>
+  <Shared>0</Shared>
+ </Property>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>
