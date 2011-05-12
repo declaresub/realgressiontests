@@ -706,6 +706,38 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Test_Feedback_16758</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_16758()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=16758&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>db.Connect.ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute("CREATE TABLE T (foo Integer)")</SourceLine>
+   <SourceLine>db.Error.ShouldEqual false</SourceLine>
+   <SourceLine>db.SQLExecute("INSERT INTO T VALUES (2)")</SourceLine>
+   <SourceLine>db.Error.ShouldEqual false</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT * FROM T")</SourceLine>
+   <SourceLine>db.Error.ShouldEqual false</SourceLine>
+   <SourceLine>rs.MovePrevious</SourceLine>
+   <SourceLine>db.Error.ShouldEqual false</SourceLine>
+   <SourceLine>//this is the test.</SourceLine>
+   <SourceLine>rs.BOF.ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Index</ObjName>
