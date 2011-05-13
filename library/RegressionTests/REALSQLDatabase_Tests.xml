@@ -809,6 +809,27 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Test_Feedback_7591</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_7591()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=7591&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE T (foo Integer)"</SourceLine>
+   <SourceLine>db.Error.ShouldEqual true</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Index</ObjName>
