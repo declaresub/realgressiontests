@@ -738,6 +738,77 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Test_Feedback_16525</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_16525()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=16525&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db_file as FolderItem = SpecialFolder.Temporary.TrueChild("test_createdatabasefile")</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>db.DatabaseFile = db_file</SourceLine>
+   <SourceLine>db.CreateDatabaseFile.ShouldEqual true</SourceLine>
+   <SourceLine>//I add a table so that I can distinguish this file from the one that is supposed to overwrite it </SourceLine>
+   <SourceLine>//when I call CreateDatabaseFile again.</SourceLine>
+   <SourceLine>db.Connect.ShouldEqual true</SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE T (foo Integer)"</SourceLine>
+   <SourceLine>db.Close</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.CreateDatabaseFile.ShouldEqual true</SourceLine>
+   <SourceLine>db.Connect.ShouldEqual true</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT Count(*) FROM sqlite_master")</SourceLine>
+   <SourceLine>rs.idxField(1).IntegerValue.ShouldEqual 0</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_CreateDatabaseFile_Existence</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_CreateDatabaseFile_Existence()</SourceLine>
+   <SourceLine>dim temp_dir as FolderItem = SpecialFolder.Temporary</SourceLine>
+   <SourceLine>temp_dir.ShouldNotBe nil</SourceLine>
+   <SourceLine>temp_dir.IsWriteable.ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db_file as FolderItem = SpecialFolder.Temporary.TrueChild("test_createdatabasefile")</SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>db.DatabaseFile = db_file</SourceLine>
+   <SourceLine>db_file.Delete</SourceLine>
+   <SourceLine>if db.CreateDatabaseFile then</SourceLine>
+   <SourceLine>db_file.Exists.ShouldEqual true</SourceLine>
+   <SourceLine>else</SourceLine>
+   <SourceLine>//CreateDatabaseFile could fail for other reasons.  I don't know whether to call this a test failure as is, </SourceLine>
+   <SourceLine>//or poke around.</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>finally</SourceLine>
+   <SourceLine>if db_file &lt;&gt; nil then</SourceLine>
+   <SourceLine>db_file.Delete</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Index</ObjName>
