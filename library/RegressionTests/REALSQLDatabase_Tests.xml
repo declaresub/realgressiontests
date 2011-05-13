@@ -785,7 +785,7 @@
    <SourceLine>temp_dir.ShouldNotBe nil</SourceLine>
    <SourceLine>temp_dir.IsWriteable.ShouldEqual true</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine>dim db_file as FolderItem = SpecialFolder.Temporary.TrueChild("test_createdatabasefile")</SourceLine>
+   <SourceLine>dim db_file as FolderItem = temp_dir.TrueChild("test_createdatabasefile")</SourceLine>
    <SourceLine>dim db as new REALSQLDatabase</SourceLine>
    <SourceLine>db.DatabaseFile = db_file</SourceLine>
    <SourceLine>db_file.Delete</SourceLine>
@@ -821,6 +821,62 @@
    <SourceLine>dim db as new REALSQLDatabase</SourceLine>
    <SourceLine>db.SQLExecute "CREATE TABLE T (foo Integer)"</SourceLine>
    <SourceLine>db.Error.ShouldEqual true</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_13368</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_13368()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=13368&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim temp_dir as FolderItem = SpecialFolder.Temporary</SourceLine>
+   <SourceLine>temp_dir.ShouldNotBe nil</SourceLine>
+   <SourceLine>temp_dir.IsWriteable.ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim f as FolderItem = temp_dir.TrueChild("testfile")</SourceLine>
+   <SourceLine>dim b as BinaryStream = BinaryStream.Create(f, false)</SourceLine>
+   <SourceLine>b.Write "test"</SourceLine>
+   <SourceLine>b = nil</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>db.DatabaseFile = f</SourceLine>
+   <SourceLine>db.Connect.ShouldEqual false //because it's not a SQLite file</SourceLine>
+   <SourceLine>//now, how do I test that it's open?</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#if targetLinux</SourceLine>
+   <SourceLine>const libc = "libc.so"</SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine>#if targetMacOS</SourceLine>
+   <SourceLine>const libc = "/usr/lib/libc.dylib"</SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>#if targetLinux or targetMacOS</SourceLine>
+   <SourceLine>soft declare function getpid lib libc () as Integer</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim s as new Shell</SourceLine>
+   <SourceLine>s.Execute "lsof -p " + Str(getpid()) + " | grep " + f.ShellPath</SourceLine>
+   <SourceLine>s.ErrorCode.ShouldEqual 1</SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine>#if targetWin32</SourceLine>
+   <SourceLine>//I need to figure out how to tell that a file is open.</SourceLine>
+   <SourceLine>#endif</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>finally</SourceLine>
+   <SourceLine>if f &lt;&gt; nil then</SourceLine>
+   <SourceLine>f.Delete</SourceLine>
+   <SourceLine>end if</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
