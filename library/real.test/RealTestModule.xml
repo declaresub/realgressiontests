@@ -32,18 +32,23 @@
   <ItemResult></ItemResult>
  </Method>
  <Method>
-  <ItemName>BuildPlatform</ItemName>
+  <ItemName>BuildTarget</ItemName>
   <Compatibility></Compatibility>
   <Visible>1</Visible>
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
-   <SourceLine>Function BuildPlatform() As String</SourceLine>
+   <SourceLine>Function BuildTarget() As String</SourceLine>
    <SourceLine>#if targetCocoa</SourceLine>
    <SourceLine>return "Mac OS Cocoa"</SourceLine>
    <SourceLine>#elseIf targetCarbon</SourceLine>
    <SourceLine>return "Mac OS Carbon"</SourceLine>
+   <SourceLine>#elseIf targetWin32</SourceLine>
+   <SourceLine>return "Windows"</SourceLine>
+   <SourceLine>#elseif targetLinux</SourceLine>
+   <SourceLine>return "Linux"</SourceLine>
    <SourceLine></SourceLine>
-   <SourceLine></SourceLine>
+   <SourceLine>#else</SourceLine>
+   <SourceLine>return ""</SourceLine>
    <SourceLine>#endif</SourceLine>
    <SourceLine>End Function</SourceLine>
   </ItemSource>
@@ -110,7 +115,8 @@
    <SourceLine>root.SetAttribute "ProjectName", App.ExecutableFile.Name</SourceLine>
    <SourceLine>dim now as new Date</SourceLine>
    <SourceLine>root.SetAttribute "Date", now.SQLDateTime</SourceLine>
-   <SourceLine>root.SetAttribute "BuildPlatform", BuildPlatform</SourceLine>
+   <SourceLine>root.SetAttribute "Version", RbVersionString</SourceLine>
+   <SourceLine>root.SetAttribute "BuildTarget", BuildTarget</SourceLine>
    <SourceLine>xml.AppendChild(root)</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine></SourceLine>
