@@ -133,6 +133,49 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Test_Feedback_16952_ShellPath</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_16952_ShellPath()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=16952&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//When f does not exist, the ShellPath and URLPath values don't contain a : in place of a /, as they should.</SourceLine>
+   <SourceLine>dim f as FolderItem = SpecialFolder.UserHome.TrueChild("foo/bar")</SourceLine>
+   <SourceLine>f.ShellPath.ShouldEqual SpecialFolder.UserHome.ShellPath + "/foo:bar"</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Feedback_16952_URLPath</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_16952_URLPath()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=16952&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>//When f does not exist, the ShellPath and URLPath values don't contain a : in place of a /, as they should.</SourceLine>
+   <SourceLine>dim f as FolderItem = SpecialFolder.UserHome.TrueChild("foo/bar")</SourceLine>
+   <SourceLine>f.URLPath.ShouldEqual SpecialFolder.UserHome.URLPath + "foo:bar"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Index</ObjName>
