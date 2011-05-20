@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<RBProject version="2011r1.1">
+<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
 <block type="Module" ID="654974953">
  <ObjName>FolderItemTests</ObjName>
  <ObjContainerID>1216539301</ObjContainerID>
@@ -144,7 +144,8 @@
    <SourceLine></SourceLine>
    <SourceLine>//When f does not exist, the ShellPath and URLPath values don't contain a : in place of a /, as they should.</SourceLine>
    <SourceLine>dim f as FolderItem = SpecialFolder.UserHome.TrueChild("foo/bar")</SourceLine>
-   <SourceLine>f.ShellPath.ShouldEqual SpecialFolder.UserHome.ShellPath + "/foo:bar"</SourceLine>
+   <SourceLine>f.ShellPath.ShouldEqual SpecialFolder.UserHome.ShellPath + "/foo\:bar"</SourceLine>
+   <SourceLineBreakpoint>5</SourceLineBreakpoint>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
