@@ -79,7 +79,7 @@
    <SourceLine>//&lt;feedback://showreport?report_id=15350&gt;</SourceLine>
    <SourceLine></SourceLine>
    <SourceLine>dim f as FolderItem = GetTemporaryFolderItem</SourceLine>
-   <SourceLine>f.Exists.ShouldEqual false</SourceLine>
+   <SourceLine>f.Exists.ShouldEqual true</SourceLine>
    <SourceLine>End Sub</SourceLine>
   </ItemSource>
   <TextEncoding>134217984</TextEncoding>
