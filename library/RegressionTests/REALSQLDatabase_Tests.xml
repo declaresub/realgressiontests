@@ -886,6 +886,39 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Test_Feedback_17553</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_17553()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=17553&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim db as new REALSQLDatabase</SourceLine>
+   <SourceLine>if not db.Connect then</SourceLine>
+   <SourceLine>return</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>db.SQLExecute ("PRAGMA encoding = ""UTF-16""")</SourceLine>
+   <SourceLine>db.SQLExecute "CREATE TABLE T (test_column)"</SourceLine>
+   <SourceLine>db.SQLExecute "INSERT INTO T VALUES ('Foo')"</SourceLine>
+   <SourceLine>db.Commit</SourceLine>
+   <SourceLine>dim rs as RecordSet = db.SQLSelect("SELECT test_column FROM T")</SourceLine>
+   <SourceLine>dim s as String = rs.idxField(1).StringValue</SourceLine>
+   <SourceLine>//note that s is six bytes of UTF-16 text, as one would expect.</SourceLine>
+   <SourceLine>dim data_encoding as TextEncoding = Encoding(s)</SourceLine>
+   <SourceLine>data_encoding.Equals(Encodings.UTF16).ShouldEqual true</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Index</ObjName>
