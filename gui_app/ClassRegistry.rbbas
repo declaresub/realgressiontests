@@ -19,7 +19,8 @@ Protected Module ClassRegistry
 		  GetTypeInfo(VariantTests), _
 		  GetTypeInfo(RectControlSubclass), _
 		  GetTypeInfo(TextEncodingTests), _
-		  GetTypeInfo(StyledTextTests))
+		  GetTypeInfo(StyledTextTests), _
+		  GetTypeInfo(ToolbarTestWindow))
 		End Function
 	#tag EndMethod
 

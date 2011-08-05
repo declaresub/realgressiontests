@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2011.02
+RBProjectVersion=2011.03
 MinIDEVersion=20110100
 Class=App;App.rbbas;&h7E7F7DC4;&h0;false
 MenuBar=MenuBar1;MenuBar1.rbmnu;&h7BD5AF92;&h0;false
@@ -24,6 +24,9 @@ Folder=RegressionTests-GUI;RegressionTests-GUI;&h1725F175;&h0;false
 Class=RectControlSubclass;RegressionTests-GUI/RectControlSubclass.rbbas;&h4D4A8CE4;&h1725F175;false
 Class=TextEncodingTests;../library/RegressionTests/TextEncodingTests.xml;&h5C88B31B;&h1725F175;false
 Class=StyledTextTests;RegressionTests-GUI/StyledTextTests.rbbas;&h25CB6FE5;&h1725F175;false
+Folder=Toolbar Tests;RegressionTests-GUI/Toolbar Tests;&h394D32EC;&h1725F175;false
+Window=ToolbarTestWindow;RegressionTests-GUI/Toolbar Tests/ToolbarTestWindow.rbfrm;&h7B4A82FD;&h394D32EC;false
+Toolbar=Toolbar1;RegressionTests-GUI/Toolbar Tests/Toolbar1.rbtbar;&h58DE30ED;&h394D32EC;false
 AppMenuBar=MenuBar1
 MajorVersion=1
 MinorVersion=0

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<RBProject version="2011r2" FormatVersion="2" MinIDEVersion="20110100">
+<RBProject version="2011r3" FormatVersion="2" MinIDEVersion="20110100">
 <block type="Module" ID="491302565">
  <ObjName>RealTestModule</ObjName>
  <ObjContainerID>1491654397</ObjContainerID>
@@ -681,6 +681,25 @@
   <Shared>0</Shared>
   <ItemParams>testList() as RealTest</ItemParams>
   <ItemResult>RealTest()</ItemResult>
+ </Method>
+ <Method>
+  <ItemName>ShouldNotEqual</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Sub ShouldNotEqual(extends actualvalue as Integer, expectedvalue as Integer)</SourceLine>
+   <SourceLine>if actualvalue = expectedvalue then</SourceLine>
+   <SourceLine>RaiseRealTestFailure actualValue, expectedvalue</SourceLine>
+   <SourceLine>end if</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>0</ItemFlags>
+  <Shared>0</Shared>
+  <ItemParams>extends actualvalue as Integer, expectedvalue as Integer</ItemParams>
+  <ItemResult></ItemResult>
  </Method>
  <ViewBehavior>
   <ViewProperty>
