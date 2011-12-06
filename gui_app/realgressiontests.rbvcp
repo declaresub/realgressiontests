@@ -1,6 +1,6 @@
 Type=Desktop
-RBProjectVersion=2011.03
-MinIDEVersion=20110100
+RBProjectVersion=2011.04
+MinIDEVersion=20070100
 Class=App;App.rbbas;&h7E7F7DC4;&h0;false
 MenuBar=MenuBar1;MenuBar1.rbmnu;&h7BD5AF92;&h0;false
 BuildSteps=Build Automation;Build Automation.rbbas;&h625CD8D0;&h0;false
@@ -15,6 +15,7 @@ Class=RealTestResults;../library/real.test/RealTestResults.xml;&h28831CCC;&h58E8
 Folder=RegressionTests;RegressionTests;&h4882EAA5;&h0;false
 Class=BinaryStreamTests;../library/RegressionTests/BinaryStreamTests.xml;&h7CB63BDD;&h4882EAA5;false
 Class=FolderItemTests;../library/RegressionTests/FolderItemTests.xml;&h2D1A2992;&h4882EAA5;false
+Class=MemoryBlockTests;../library/RegressionTests/MemoryBlockTests.xml;&h37465557;&h4882EAA5;false
 Class=REALSQLDatabase_Tests;../library/RegressionTests/REALSQLDatabase_Tests.xml;&h59DD3316;&h4882EAA5;false
 Class=PairTests;../library/RegressionTests/PairTests.xml;&h67DC5C3B;&h4882EAA5;false
 Class=StructureTests;../library/RegressionTests/StructureTests.xml;&h1B29CC40;&h4882EAA5;false

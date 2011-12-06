@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<RBProject version="2011r4" FormatVersion="2" MinIDEVersion="20070100">
+<block type="Module" ID="138007424">
+ <ObjName>MemoryBlockTests</ObjName>
+ <ObjContainerID>1216539301</ObjContainerID>
+ <IsClass>1</IsClass>
+ <ItemFlags>1</ItemFlags>
+ <IsInterface>0</IsInterface>
+ <Compatibility></Compatibility>
+ <Attributes>RegressionTestClass = true</Attributes>
+ <Method>
+  <ItemName>Test_Size_0</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Size_0()</SourceLine>
+   <SourceLine>const expectedSize = 0</SourceLine>
+   <SourceLine>dim m as new MemoryBlock(expectedSize)</SourceLine>
+   <SourceLine>m.Size.ShouldEqual expectedSize</SourceLine>
+   <SourceLine>dim p as Ptr = m</SourceLine>
+   <SourceLine>Integer(p).ShouldNotEqual 0</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Size_1024</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Size_1024()</SourceLine>
+   <SourceLine>const expectedSize = 1024</SourceLine>
+   <SourceLine>dim m as new MemoryBlock(expectedSize)</SourceLine>
+   <SourceLine>m.Size.ShouldEqual expectedSize</SourceLine>
+   <SourceLine>dim p as Ptr = m</SourceLine>
+   <SourceLine>Integer(p).ShouldNotEqual 0</SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <Method>
+  <ItemName>Test_Resize</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Resize()</SourceLine>
+   <SourceLine>dim s as String = "B23A902B-8B5E-4B4D-A0A4-12780CD1A90F"</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim m as MemoryBlock = s</SourceLine>
+   <SourceLine>const newSize = 1024</SourceLine>
+   <SourceLine>m.Size = newSize</SourceLine>
+   <SourceLine>m.Size.ShouldEqual newSize</SourceLine>
+   <SourceLine>m.StringValue(0, LenB(s)).ShouldEqual s</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
+ <ViewBehavior>
+  <ViewProperty>
+   <ObjName>Name</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Index</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <PropertyValue>-2147483648</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Super</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>ID</PropertyGroup>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Left</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+  <ViewProperty>
+   <ObjName>Top</ObjName>
+   <Visible>1</Visible>
+   <PropertyGroup>Position</PropertyGroup>
+   <PropertyValue>0</PropertyValue>
+   <InheritsFrom>Object</InheritsFrom>
+  </ViewProperty>
+ </ViewBehavior>
+</block>
+</RBProject>

@@ -11,6 +11,7 @@ Protected Module ClassRegistry
 		  GetTypeInfo(RealTestFailure), _
 		  GetTypeInfo(RealTestResults), _
 		  GetTypeInfo(BinaryStreamTests), _
+		  GetTypeInfo(MemoryBlockTests), _
 		  GetTypeInfo(FolderItemTests), _
 		  GetTypeInfo(REALSQLDatabase_Tests), _
 		  GetTypeInfo(PairTests), _
