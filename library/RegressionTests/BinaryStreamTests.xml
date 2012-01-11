@@ -73,6 +73,33 @@
   <ItemParams></ItemParams>
   <ItemResult></ItemResult>
  </Method>
+ <Method>
+  <ItemName>Test_Feedback_12974</ItemName>
+  <Compatibility></Compatibility>
+  <Visible>1</Visible>
+  <ItemSource>
+   <TextEncoding>134217984</TextEncoding>
+   <SourceLine>Shared Sub Test_Feedback_12974()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=12974&gt;</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>dim m as new memoryblock(4)</SourceLine>
+   <SourceLine>dim b as new binarystream(m)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>for i as Integer = 1 to 8</SourceLine>
+   <SourceLine>b.writeboolean true</SourceLine>
+   <SourceLine>next</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>b.Length.ShouldEqual CType(8, UInt64)</SourceLine>
+   <SourceLine></SourceLine>
+   <SourceLine>End Sub</SourceLine>
+  </ItemSource>
+  <TextEncoding>134217984</TextEncoding>
+  <AliasName></AliasName>
+  <ItemFlags>33</ItemFlags>
+  <Shared>1</Shared>
+  <ItemParams></ItemParams>
+  <ItemResult></ItemResult>
+ </Method>
  <ViewBehavior>
   <ViewProperty>
    <ObjName>Index</ObjName>
