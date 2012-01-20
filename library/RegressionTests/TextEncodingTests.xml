@@ -58,6 +58,8 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Shared Sub Test_UTF16LE_Length()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=19822&gt;</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>dim foo as String = ConvertEncoding("foo", Encodings.UTF16LE)</SourceLine>
    <SourceLine>LenB(foo).ShouldEqual 6</SourceLine>
    <SourceLine>Len(foo).ShouldEqual 3</SourceLine>
@@ -77,6 +79,8 @@
   <ItemSource>
    <TextEncoding>134217984</TextEncoding>
    <SourceLine>Shared Sub Test_UTF16BE_Length()</SourceLine>
+   <SourceLine>//&lt;feedback://showreport?report_id=19822&gt;</SourceLine>
+   <SourceLine></SourceLine>
    <SourceLine>dim foo as String = ConvertEncoding("foo", Encodings.UTF16BE)</SourceLine>
    <SourceLine>LenB(foo).ShouldEqual 6</SourceLine>
    <SourceLine>Len(foo).ShouldEqual 3</SourceLine>
