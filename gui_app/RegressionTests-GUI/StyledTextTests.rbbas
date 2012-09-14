@@ -2,6 +2,9 @@
  Attributes ( RegressionTestClass = true ) Class StyledTextTests
 	#tag Method, Flags = &h21
 		Private Shared Sub Test_RTFDataException()
+		  // <feedback://showreport?report_id=15164>
+		  
+		  #pragma breakOnExceptions off
 		  dim st as new StyledText
 		  dim s as String = st.RTFData
 		  #pragma unused s
