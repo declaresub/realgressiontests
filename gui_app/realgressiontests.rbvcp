@@ -1,5 +1,5 @@
 Type=Desktop
-RBProjectVersion=2011.04
+RBProjectVersion=2012.01
 MinIDEVersion=20070100
 Class=App;App.rbbas;&h7E7F7DC4;&h0;false
 MenuBar=MenuBar1;MenuBar1.rbmnu;&h7BD5AF92;&h0;false
@@ -41,7 +41,7 @@ WinCompanyName=
 WinInternalName=
 WinProductName=
 AutoIncrementVersionInformation=False
-BuildFlags=&h1000
+BuildFlags=&h1800
 BuildLanguage=&h0
 DebugLanguage=&h0
 Region=

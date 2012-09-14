@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<RBProject version="2011r4" FormatVersion="2" MinIDEVersion="20070100">
+<RBProject version="2012r1" FormatVersion="2" MinIDEVersion="20070100">
 <block type="Module" ID="1867017680">
  <ObjName>TextEncodingTests</ObjName>
  <ObjContainerID>388362613</ObjContainerID>
